@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Оплата</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    async function checkPayment() {
+      const btn = document.getElementById('pay-btn');
+      btn.disabled = true;
+      btn.innerText = "🔍 Перевіряємо...";
+      try {
+        const res = await fetch("https://pantelmed-backend.onrender.com/check-payment");
+        const data = await res.json();
+        if (data.access === "granted") {
+          window.location.href = "thankyou.html";
+        } else {
+          alert("Платіж не знайдено. Спробуй пізніше.");
+          btn.disabled = false;
+          btn.innerText = "✅ Я оплатив";
+        }
+      } catch (err) {
+        alert("Помилка з'єднання з сервером.");
+        btn.disabled = false;
+        btn.innerText = "✅ Я оплатив";
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>💳 Оплата</h2>
+    <p>Надішли 0.5 USDT (TRC-20) на адресу:</p>
+    <code style="display: block; margin: 20px 0; font-size: 18px;">TQeHa8VdwfyybxtioW4ggbnDC1rbWe8nFa</code>
+    <p>Після оплати натисни:</p>
+    <button id="pay-btn" onclick="checkPayment()">✅ Я оплатив</button>
+  </div>
+</body>
+</html>
