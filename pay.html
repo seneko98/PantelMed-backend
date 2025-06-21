@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,12 +15,12 @@
         if (data.access === "granted") {
           window.location.href = "thankyou.html";
         } else {
-          alert("Платіж не знайдено. Спробуй пізніше.");
+          alert("❌ Платіж не знайдено. Спробуй пізніше або зачекай кілька хвилин.");
           btn.disabled = false;
           btn.innerText = "✅ Я оплатив";
         }
       } catch (err) {
-        alert("Помилка з'єднання з сервером.");
+        alert("⚠️ Помилка з'єднання з сервером.");
         btn.disabled = false;
         btn.innerText = "✅ Я оплатив";
       }
@@ -31,9 +30,9 @@
 <body>
   <div class="container">
     <h2>💳 Оплата</h2>
-    <p>Надішли 0.5 USDT (TRC-20) на адресу:</p>
+    <p>Надішли <b>0.5 USDT (TRC-20)</b> на адресу:</p>
     <code style="display: block; margin: 20px 0; font-size: 18px;">TQeHa8VdwfyybxtioW4ggbnDC1rbWe8nFa</code>
-    <p>Після оплати натисни:</p>
+    <p>Після оплати натисни кнопку нижче:</p>
     <button id="pay-btn" onclick="checkPayment()">✅ Я оплатив</button>
   </div>
 </body>
